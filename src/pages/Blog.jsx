@@ -4,7 +4,7 @@ const Blog = () => {
   return (
     <>
      <h2 className="text-4xl font-semibold text-gray-800 leading-tight text-center mt-4">
-            Featured <span className='blue-gradient_text'>Blogs</span>
+            <span className='blue-gradient_text'>Blogs</span>
           </h2>
    <div className ="bg-gradient-to-bl from-blue-50 to-violet-50 flex items-center justify-center lg:h-screen">
       <div className="container mx-auto mx-auto p-4">
