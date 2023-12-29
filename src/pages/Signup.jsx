@@ -3,6 +3,10 @@ import Loader from "../components/Loader";
 
 const Signup = () => {
   const [loader, setLoader] = useState(false);
+  const [username, setUsername] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     setLoader(true);
@@ -10,6 +14,28 @@ const Signup = () => {
       setLoader(false);
     }, 2000);
   }, []);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch("http://localhost:4000/Register", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      // Handle successful response
+      console.log("Signup successful!");
+      setUsername("");
+      setPassword("");
+      setFullname("");
+      setEmail("");
+    } else {
+      // Handle error or failed response
+      console.error("Signup failed!");
+    }
+  };
 
   return (
     <section>
@@ -23,13 +49,15 @@ const Signup = () => {
                 SignUp
               </h1>
               <p className="text-sm leading-normal">SignUp to explore</p>
-              <form action="/signup" method="post" className="space-y-5 mt-5">
+              <form className="space-y-5 mt-5" onSubmit={submitHandler}>
                 <div className="mb-4 relative">
                   <input
                     id="username"
                     className="w-full rounded px-3 border border-gray-500 pt-5 pb-2 focus:outline-none input active:outline-none"
                     type="text"
                     autoFocus
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                   <label
                     htmlFor="username"
@@ -40,9 +68,11 @@ const Signup = () => {
                 </div>
                 <div className="mb-4 relative">
                   <input
-                    id="fulname"
-                    className="w-full rounded px-3 border border-gray-500 pt-5 pb-2 focus:outline-none input active:outline-none"
+                    id="fullname"
+                    className="w-full rounded px-3 pt-5 outline-none pb-2 focus:outline-none active:outline-none input active:border-blue-500"
                     type="text"
+                    value={fullname}
+                    onChange={(e) => setFullname(e.target.value)}
                   />
                   <label
                     htmlFor="fullname"
@@ -54,8 +84,10 @@ const Signup = () => {
                 <div className="mb-4 relative">
                   <input
                     id="email"
-                    className="w-full rounded px-3 border border-gray-500 pt-5 pb-2 focus:outline-none input active:outline-none"
-                    type="text"
+                    className="w-full rounded px-3 pt-5 outline-none pb-2 focus:outline-none active:outline-none input active:border-blue-500"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <label
                     htmlFor="email"
@@ -69,6 +101,8 @@ const Signup = () => {
                     id="password"
                     className="w-full rounded px-3 pt-5 outline-none pb-2 focus:outline-none active:outline-none input active:border-blue-500"
                     type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <label
                     htmlFor="password"
@@ -86,7 +120,7 @@ const Signup = () => {
               </form>
             </div>
             <p>
-              Already have an Accont ?{" "}
+              Already have an Account?{" "}
               <a
                 className="blue-gradient_text font-bold p-2 rounded-full"
                 href="/login"
