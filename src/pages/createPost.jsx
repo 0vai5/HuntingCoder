@@ -34,32 +34,7 @@ const CreatePost = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const data = new FormData();
-    data.set("title", title);
-    data.set("content", text);
-    if (file) {
-      data.append("file", file); // Use append to add the file to FormData
-    }
 
-    try {
-      const response = await fetch("http://localhost:4000/Post", {
-        method: "POST",
-        body: data,
-      });
-
-      if (response.ok) {
-        setPostSuccess(true);
-        setTitle("");
-        setText("");
-        setFile(null);
-        console.log("Redirecting...");
-        window.location.replace("/");
-      } else {
-        console.log("Post creation failed");
-      }
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
   };
 
   return (

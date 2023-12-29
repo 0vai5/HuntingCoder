@@ -18,23 +18,6 @@ const Signup = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:4000/Register", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-Type": "application/json" },
-    });
-
-    if (response.ok) {
-      // Handle successful response
-      console.log("Signup successful!");
-      setUsername("");
-      setPassword("");
-      setFullname("");
-      setEmail("");
-    } else {
-      // Handle error or failed response
-      console.error("Signup failed!");
-    }
   };
 
   return (

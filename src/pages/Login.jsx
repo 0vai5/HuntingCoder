@@ -16,26 +16,7 @@ const Login = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:4000/Login", {
-        method: "POST",
-        body: JSON.stringify({ username, password }),
-        headers: { "Content-Type": "application/json" },
-        credentials: 'include',
-      });
-      setUsername("");
-      setPassword("");
-
-      if (response.ok) {
-        console.log("Login successful");
-        setLoginSuccess(true); // Set login success state to true
-      } else {
-        // Handle authentication failure here
-        console.log("Login failed");
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-    }
+    
   };
 
   return (
