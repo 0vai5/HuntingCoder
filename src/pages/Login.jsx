@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import Loader from '../components/Loader';
 
 const Login = () => {
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 2000);
+  }, []);
   return (
+    <section>
+{loader ? (
+  <Loader />
+):(
+<>
     <div className="h-screen bg-white relative flex flex-col space-y-10 justify-center items-center">
-      <div className="bg-white md:shadow-lg shadow-none rounded p-6 w-96">
+      <div className="bg-white md:shadow-lg shadow-none rounded w-96">
         <h1 className="text-3xl font-bold leading-normal blue-gradient_text">
           Login
         </h1>
@@ -54,6 +68,9 @@ const Login = () => {
         </a>
       </p>
     </div>
+    </>
+    )}
+    </section>
   );
 };
 

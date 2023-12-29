@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import Loader from '../components/Loader';
 
 const Profile = () => {
+    const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 2000);
+  }, []);
   return (
-    
+    <section>
+        {loader ? (
+            <Loader />
+        ):(
+<>
 <div>
    <div className="md:grid grid-cols-4 grid-rows-2  bg-white gap-2 p-4 rounded-xl">
         <div className="md:col-span-1 h-48 shadow-xl ">
@@ -34,6 +47,10 @@ const Profile = () => {
             
     </div>
 </div>
+</>
+        )}
+
+</section>
   )
 }
 
