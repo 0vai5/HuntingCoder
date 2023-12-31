@@ -25,12 +25,7 @@ const CreatePost = () => {
     ],
   };
 
-  useEffect(() => {
-    setLoader(true);
-    setTimeout(() => {
-      setLoader(false);
-    }, 2000);
-  }, []);
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -39,9 +34,7 @@ const CreatePost = () => {
 
   return (
     <section>
-      {loader ? (
-        <Loader />
-      ) : (
+      
         <div className="post-container">
           <div className="heading text-center font-bold text-2xl m-5 text-gray-800">
             New Post
@@ -90,7 +83,7 @@ const CreatePost = () => {
             </form>
           </div>
         </div>
-      )}
+      
     </section>
   );
 };

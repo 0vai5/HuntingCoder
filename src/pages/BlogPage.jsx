@@ -2,20 +2,11 @@ import React, { useEffect, useState } from "react";
 import Loader from "../components/Loader";
 
 const BlogPage = () => {
-  const [loader, setLoader] = useState(false);
-
-  useEffect(() => {
-    setLoader(true);
-    setTimeout(() => {
-      setLoader(false);
-    }, 2000);
-  }, []);
+  
 
   return (
     <section>
-      {loader ? (
-        <Loader />
-      ) : (
+      
         <>
           <div className="max-w-screen-lg mx-auto">
             <main className="mt-10">
@@ -43,7 +34,7 @@ const BlogPage = () => {
             </main>
           </div>
         </>
-      )}
+      
     </section>
   );
 };

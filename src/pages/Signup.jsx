@@ -2,29 +2,44 @@ import React, { useEffect, useState } from "react";
 import Loader from "../components/Loader";
 
 const Signup = () => {
-  const [loader, setLoader] = useState(false);
+ 
   const [username, setUsername] = useState("");
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    setLoader(true);
-    setTimeout(() => {
-      setLoader(false);
-    }, 2000);
-  }, []);
+ 
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
-  };
+  
+    
+      const response = await fetch('http://localhost:4000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, fullname, email, password })
+      }
+      );
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+    }
+  
+  
+  
+  
+    
+   
+  
+  
 
   return (
     <section>
-      {loader ? (
-        <Loader />
-      ) : (
+      
         <>
           <div className="h-screen bg-white relative flex flex-col space-y-10 justify-center items-center">
             <div className="bg-white md:shadow-lg shadow-none rounded p-6 w-96">
@@ -40,6 +55,7 @@ const Signup = () => {
                     type="text"
                     autoFocus
                     value={username}
+                    name="userName"
                     onChange={(e) => setUsername(e.target.value)}
                   />
                   <label
@@ -55,6 +71,7 @@ const Signup = () => {
                     className="w-full rounded px-3 pt-5 outline-none pb-2 focus:outline-none active:outline-none input active:border-blue-500"
                     type="text"
                     value={fullname}
+                    name="fullName"
                     onChange={(e) => setFullname(e.target.value)}
                   />
                   <label
@@ -69,6 +86,8 @@ const Signup = () => {
                     id="email"
                     className="w-full rounded px-3 pt-5 outline-none pb-2 focus:outline-none active:outline-none input active:border-blue-500"
                     type="email"
+                    required
+                    name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -85,6 +104,7 @@ const Signup = () => {
                     className="w-full rounded px-3 pt-5 outline-none pb-2 focus:outline-none active:outline-none input active:border-blue-500"
                     type="password"
                     value={password}
+                    name="password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   <label
@@ -113,9 +133,10 @@ const Signup = () => {
             </p>
           </div>
         </>
-      )}
+      
     </section>
   );
 };
+
 
 export default Signup;

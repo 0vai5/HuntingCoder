@@ -2,20 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Loader from '../components/Loader';
 
 const Home = () => {
-  const [loader, setLoader] = useState(false);
-
-  useEffect(() => {
-    setLoader(true);
-    setTimeout(() => {
-      setLoader(false);
-    }, 2000);
-  }, []);
-
+  
   return (
     <section>
-      {loader ? (
-        <Loader />
-      ) : (
+      
         <>
           <h2 className="text-4xl font-semibold text-gray-800 leading-tight text-center mt-4">
             Featured <span className="blue-gradient_text">Blogs</span>
@@ -49,7 +39,7 @@ const Home = () => {
             </div>
           </div>
         </>
-      )}
+    
     </section>
   );
 };
